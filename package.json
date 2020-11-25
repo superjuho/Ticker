@@ -1,0 +1,42 @@
+{
+  "name": "ticker-bundle",
+  "version": "0.0.0",
+  "description": "Dynamic ticker graphics",
+  "homepage": "",
+  "author": {
+    "name": "superjuho",
+    "email": "puurunen.tuho@gmail.com",
+    "url": ""
+  },
+  "files": [
+    "dashboard",
+    "graphics",
+    "extension.js",
+    "extension"
+  ],
+  "keywords": [
+    "",
+    "nodecg-bundle"
+  ],
+  "nodecg": {
+    "compatibleRange": "^1.1.1",
+    "dashboardPanels": [
+      {
+        "name": "ticker-control",
+        "title": "Ticker Control",
+        "width": 2,
+        "file": "ticker-control.html",
+        "headerColor": "#525F78"
+      }
+    ],
+    "graphics": [
+      {
+        "file": "ticker.html",
+        "width": 1920,
+        "height": 1080
+      }
+    ]
+  },
+  "repository": "https://github.com/nodecg/nodecg.git",
+  "license": "Apache-2.0"
+}
