@@ -1,5 +1,7 @@
 'use strict';
 
+
+
 module.exports = function (nodecg) {
 	nodecg.log.info('Hello, from your bundle\'s extension!');
 	nodecg.log.info('I\'m where you put all your server-side code.');
