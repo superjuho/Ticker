@@ -1,4 +1,8 @@
+import {gsap} from '../node_modules/gsap/index.js';
+
+const tl = gsap.timeline();
 let snippets = [];
+let isDestroyed = false;
 
 nodecg.listenFor('emptyArray',() => {
 	const ticker = document.querySelector(".ticker");
@@ -6,11 +10,16 @@ nodecg.listenFor('emptyArray',() => {
 	ticker.innerHTML = "";
 	const tickerWrap = document.querySelector(".ticker-wrap");
 	tickerWrap.style["opacity"] = "0";
+	isDestroyed = true;
 })
 
 nodecg.listenFor('addtoTicker', (item) => {
 	const tickerWrap = document.querySelector(".ticker-wrap");
-	tickerWrap.style["opacity"] = "1";
+	isDestroyed = false;
+	if (snippets < 2 || tickerWrap.style["opacity"] == 0) {
+		tl.from([tickerWrap], .5, {opacity: 0});
+		tl.to([tickerWrap], .5, {opacity: 1});
+	}
 	snippets.push(item);
 
   let snippetContainer = "";
@@ -36,10 +45,16 @@ nodecg.listenFor('addtoTicker', (item) => {
 
   nodecg.listenFor('hideTicker', () => {
 	const tickerWrap = document.querySelector(".ticker-wrap");
-	tickerWrap.style["opacity"] = "0";
+	if (tickerWrap.style["opacity"] == 1) {
+		tl.from([tickerWrap], .5, {opacity: 1});
+		tl.to([tickerWrap], .5, {opacity: 0});
+	}
   })
 
   nodecg.listenFor('showTicker', () => {
 	const tickerWrap = document.querySelector(".ticker-wrap");
-	tickerWrap.style["opacity"] = "1";
+	if (tickerWrap.style["opacity"] == 0 && !isDestroyed){
+		tl.from([tickerWrap], .5, {opacity: 0});
+		tl.to([tickerWrap], .5, {opacity: 1});
+	}
   })

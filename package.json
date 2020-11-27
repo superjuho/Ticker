@@ -38,5 +38,8 @@
     ]
   },
   "repository": "https://github.com/nodecg/nodecg.git",
-  "license": "Apache-2.0"
+  "license": "Apache-2.0",
+  "dependencies": {
+    "gsap": "^3.5.1"
+  }
 }
